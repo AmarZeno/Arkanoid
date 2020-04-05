@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
 	}
 
 	#region Serialized Fields
-	[SerializeField] private Text _scoreText;
+	[SerializeField] private Text _scoreText = null;
 	#endregion
 
 	#region Private Variables
-	private int score = 0;
+	private int _score = 0;
 	#endregion
 
 	#region Public Methods
@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
 
 	public void ScoreUp()
 	{
-
+		_score++;
+		_scoreText.text = _score.ToString();
 	}
 	#endregion
 

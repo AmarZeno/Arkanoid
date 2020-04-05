@@ -6,10 +6,12 @@ public class Ball : MonoBehaviour
 {
 	#region Inspector Fields
 	[SerializeField] private float bounceForce = 2.0f;
+
 	#endregion
 
 	#region Private Variables
 	private Rigidbody2D _ballRigidBody;
+	private bool _ballStarted = false;
 	#endregion
 
 	#region Private Methods
@@ -35,9 +37,10 @@ public class Ball : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.anyKeyDown)
+		if(!_ballStarted && Input.anyKeyDown)
 		{
 			StartBounce();
+			_ballStarted = true;
 		}
 	}
 
@@ -46,6 +49,10 @@ public class Ball : MonoBehaviour
 		if(collision.gameObject.tag == "Ground")
 		{
 			GameManager.Instance.Restart();
+		}
+		else if(collision.gameObject.tag == "Paddle")
+		{
+			GameManager.Instance.ScoreUp();
 		}
 	}
 	#endregion

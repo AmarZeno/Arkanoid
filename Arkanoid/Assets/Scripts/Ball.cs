@@ -26,6 +26,7 @@ public class Ball : MonoBehaviour
 	private void Awake()
 	{
 		_ballRigidBody = GetComponent<Rigidbody2D>();
+		_ballRigidBody.isKinematic = true;
 	}
 
 	// Start is called before the first frame update
@@ -39,8 +40,10 @@ public class Ball : MonoBehaviour
 	{
 		if(!_ballStarted && Input.anyKeyDown)
 		{
+			_ballRigidBody.isKinematic = false;
 			StartBounce();
 			_ballStarted = true;
+			GameManager.Instance.NotifyGameStart();
 		}
 	}
 

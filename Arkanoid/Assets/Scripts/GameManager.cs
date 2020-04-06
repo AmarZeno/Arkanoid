@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
 	#region Serialized Fields
 	[SerializeField] private Text _scoreText = null;
+	[SerializeField] private GameObject _startScreen = null;
 	#endregion
 
 	#region Private Variables
@@ -35,8 +36,15 @@ public class GameManager : MonoBehaviour
 		_score++;
 		_scoreText.text = _score.ToString();
 	}
+
+	public void NotifyGameStart()
+	{
+		_startScreen.SetActive(false);
+		_scoreText.gameObject.SetActive(true);
+	}
 	#endregion
 
+	#region Monobehavior Methods
 	private void Awake()
 	{
 		if(_instance == null || _instance == this)
@@ -59,4 +67,5 @@ public class GameManager : MonoBehaviour
 	{
 		
 	}
+	#endregion
 }
